@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Apps Script</title>
+</head>
+<body>
+  <h2>Test conexión Apps Script</h2>
+  <button onclick="testConexion()">Probar conexión</button>
+  <pre id="resultado">Esperando...</pre>
+
+  <script>
+    const APPS_SCRIPT_URL = "https://script.google.com/a/macros/pedidosya.com/s/AKfycbw7Oia0wGqMxoV1wuqrYN6WPD3W-8zUhNvvBuUvxlMPdyhl4EqoCqT9w4DkoINla-iWPQ/exec";
+
+    async function testConexion() {
+      document.getElementById("resultado").textContent = "Cargando...";
+      try {
+        const res = await fetch(APPS_SCRIPT_URL);
+        const data = await res.json();
+        document.getElementById("resultado").textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        document.getElementById("resultado").textContent = "Error: " + err.message;
+      }
+    }
+  </script>
+</body>
+</html>
